@@ -8,8 +8,8 @@ namespace Homework2
         {
             //double result = Task1(double.Parse(EnterNumber()), double.Parse(EnterNumber()));
             // int result = Task2(double.Parse(EnterNumber()), double.Parse(EnterNumber()));
-            //(int, int, int) result = Task3(int.Parse(EnterNumber()), int.Parse(EnterNumber()), int.Parse(EnterNumber()));
-            (double, double) result = Task4(double.Parse(EnterNumber()), double.Parse(EnterNumber()), double.Parse(EnterNumber()));
+            (int, int, int) result = Task3(int.Parse(EnterNumber()), int.Parse(EnterNumber()), int.Parse(EnterNumber()));
+            //(double, double) result = Task4(double.Parse(EnterNumber()), double.Parse(EnterNumber()), double.Parse(EnterNumber()));
             //string result = Task5(int.Parse(EnterNumber()));
 
             Console.WriteLine(result);
@@ -33,46 +33,57 @@ namespace Homework2
 
         public static int Task2(double x, double y)
         {
+            int result;
             switch (x, y)
             {
                 case ( > 0, > 0):
-                    return 1;
+                    result = 1;
+                    break;
                 case ( > 0, < 0):
-                    return 2;
+                    result = 2;
+                    break;
                 case ( < 0, < 0):
-                    return 3;
+                    result = 3;
+                    break;
                 case ( < 0, > 0):
-                    return 4;
+                    result = 4;
+                    break;
                 default:
-                    return 0;
+                    result = 0;
+                    break;
             }
+            return result;
         }
 
         public static (int, int, int) Task3(int a, int b, int c)
         {
-            (int, int, int) sequence = (a, b, c);
+            int min = a, mid = b, max = c;
 
-            if (sequence.Item1 > sequence.Item2)
+            if (min > mid)
             {
-                sequence = (sequence.Item2, sequence.Item1, sequence.Item3);
+                Swap(ref min, ref mid);
             }
-
-            if (sequence.Item1 > sequence.Item3)
+            if (min > max)
             {
-                sequence = (sequence.Item3, sequence.Item2, sequence.Item1);
+                Swap(ref min, ref max);
             }
-
-            if (sequence.Item2 > sequence.Item3)
+            if (mid > max)
             {
-                sequence = (sequence.Item1, sequence.Item3, sequence.Item2);
+                Swap(ref mid, ref max);
             }
+            return (min, mid, max);
+        }
 
-            return sequence;
+        private static void Swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
         }
 
         public static (double, double) Task4(double a, double b, double c)
         {
-            if (a != 0 && b != 0)
+            if (a != 0)
             {
                 double discriminant = b * b - 4 * a * c;
                 if (discriminant >= 0)
@@ -83,26 +94,18 @@ namespace Homework2
                 }
                 else
                 {
-                    throw new NotImplementedException("There is no solution of quadratic equation ");
+                    throw new NotImplementedException("There is no solution of quadratic equation");
                 }
             }
-            else if (a == 0 && b != 0)
-            {
-                return (-c / b, -c / b);
-            }
-            else if (a != 0 && b == 0 && ((c <= 0 && a > 0) || (c >= 0 && a < 0)))
-            {
-                return (Math.Sqrt(-c / a), Math.Sqrt(-c / a));
-            }
             else
-            {
-                throw new NotImplementedException("There is no solution of quadratic equation ");
+            {            
+                throw new NotImplementedException("There is no solution of quadratic equation");
             }
         }
 
         public static string Task5(int number)
         {
-            string textValue = "";
+            string textValue = string.Empty;
             if (number >= 10 && number <= 19)
             {
                 switch (number)
