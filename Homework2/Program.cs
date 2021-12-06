@@ -17,23 +17,28 @@ namespace Homework2
 
         public static double Task1(double a, double b)
         {
+            double result;
+
             if (a > b)
             {
-                return a + b;
+                result = a + b;
             }
             else if (a < b)
             {
-                return a - b;
+                result = a - b;
             }
             else
             {
-                return a * b;
+                result = a * b;
             }
+
+            return result;
         }
 
         public static int Task2(double x, double y)
         {
             int result;
+
             switch (x, y)
             {
                 case ( > 0, > 0):
@@ -57,24 +62,23 @@ namespace Homework2
 
         public static (int, int, int) Task3(int a, int b, int c)
         {
-            int min = a, mid = b, max = c;
+            if (a > b)
+            {
+                Swap(ref a, ref b);
+            }
+            if (a > c)
+            {
+                Swap(ref a, ref c);
+            }
+            if (b > c)
+            {
+                Swap(ref b, ref c);
+            }
 
-            if (min > mid)
-            {
-                Swap(ref min, ref mid);
-            }
-            if (min > max)
-            {
-                Swap(ref min, ref max);
-            }
-            if (mid > max)
-            {
-                Swap(ref mid, ref max);
-            }
-            return (min, mid, max);
+            return (a, b, c);
         }
 
-        private static void Swap(ref int a, ref int b)
+        public static void Swap(ref int a, ref int b)
         {
             int temp = a;
             a = b;
@@ -98,7 +102,7 @@ namespace Homework2
                 }
             }
             else
-            {            
+            {
                 throw new NotImplementedException("There is no solution of quadratic equation");
             }
         }
@@ -205,10 +209,11 @@ namespace Homework2
                         textValue += "-nine";
                         break;
                     default:
-                        textValue += "";
+                        textValue += string.Empty;
                         break;
                 }
             }
+
             return textValue;
         }
 
