@@ -96,15 +96,9 @@ namespace Homework2
                     double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
                     return (x1, x2);
                 }
-                else
-                {
-                    throw new NotImplementedException("There is no solution of quadratic equation");
-                }
             }
-            else
-            {
-                throw new NotImplementedException("There is no solution of quadratic equation");
-            }
+
+            throw new NotImplementedException("There is no solution of quadratic equation");
         }
 
         public static string Task5(int number)
